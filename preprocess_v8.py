@@ -18,12 +18,12 @@ def preprocess_handler(inference_record, logger):
         data = output_data + input_data
 
         data_dict = {}
-        col_names = ['Categorical', 'Feature_1', 'Feature_2', 'Feature_3', 'Feature_4', 'Feature_5', 'Categorical']
+        col_names = ['Feature_1', 'Feature_2', 'Feature_3', 'Feature_4', 'Feature_5', 'Categorical']
         for i, d in enumerate(data):
             if col_names[i] == 'Categorical':
-                data_dict[col_names[i]] = int(d)
+                data_dict[str(i).zfill(10)] = int(d)
             else:
-                data_dict[col_names[i]] = d
+                data_dict[str(i).zfill(10)] = d
     
         logger.info(data_dict)
         
@@ -38,12 +38,12 @@ def preprocess_handler(inference_record, logger):
 
         
         data_dict = {}
-        col_names = ['Categorical', 'Feature_1', 'Feature_2', 'Feature_3', 'Feature_4', 'Feature_5']
+        col_names = ['Feature_1', 'Feature_2', 'Feature_3', 'Feature_4', 'Feature_5', 'Categorical']
         for i, d in enumerate(data):
             if col_names[i] == 'Categorical':
-                data_dict[col_names[i]] = int(float(d))
+                data_dict[str(i).zfill(10)] = int(float(d))
             else:
-                data_dict[col_names[i]] = float(d)
+                data_dict[str(i).zfill(10)] = float(d)
         
         logger.info(data_dict)
         return data_dict
